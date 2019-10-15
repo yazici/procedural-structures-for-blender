@@ -8,13 +8,21 @@
 
 
 __all__ = [
+        'RuleJob',
         'OpSplit',
         'OpPushScope',
         'OpPopScope',
         'OpColour',
+        'OpChooseRuleWithPriority',
         ]
 
 from .geometry import *
+from random import uniform
+
+class RuleJob:
+    def __init__(self, ruleLabel, scope):
+        self.ruleLabel = ruleLabel
+        self.scope = scope
 
 class Op:
     def __init__(self):
@@ -40,7 +48,7 @@ class OpSplit(Op):
 
         # Return the param/scope pairs as rules that need running
 
-        return [(self.leftRule, leftScope), (self.rightRule, rightScope)]
+        return [RuleJob(self.leftRule, leftScope), RuleJob(self.rightRule, rightScope)]
 
 class OpPushScope(Op):
     def __init__(self):
@@ -67,4 +75,16 @@ class OpColour(Op):
         model.recolour(scope, self.colour)
         return []
 
+# Given a list of rules, will choose one at random according to their priorirties
+class OpChooseRuleWithPriority(Op):
+    def __init__(self, rules):
+        self.rules = rules
 
+    def run(self, model, scope):
+        # Pick a random number less than the max cumulative priority
+        rand = uniform(0, self.rules[-1].cumulativePriority)
+        i = 0
+        while self.rules[i].cumulativePriority < rand:
+            i += 1
+
+        return self.rules[i].run(model, scope)

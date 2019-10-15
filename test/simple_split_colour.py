@@ -9,16 +9,6 @@
 
 from psb import *
 
+grammar = Grammar("grammars\/simple_grammar.txt", "plot")
 model = Model(Position(0,0,0), CoordinateSystem((1,0,0), (0,1,0), (0,0,1)), Size(10,10,10))
-
-colourRed = OpColour("red")
-colourRedRule = Rule([colourRed], 1)
-
-colourBlue = OpColour("blue")
-colourBlueRule = Rule([colourBlue], 1)
-
-splitRedBlue = OpSplit(colourRedRule, colourBlueRule)
-splitRedBlueRule = Rule([splitRedBlue], 1)
-
-grammar = Grammar(splitRedBlueRule)
 grammar.run(model, 1)

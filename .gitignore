@@ -5,6 +5,9 @@ __pycache__/
 # C extensions
 *.so
 
+# out extensions
+*.out
+
 # Distribution / packaging
 bin/
 build/
@@ -33,3 +36,7 @@ coverage.xml
 
 # Translations
 *.mo
+
+# Spyder project settings
+.spyderproject
+.spyproject
