@@ -2,6 +2,10 @@ from .geometry import *
 from .grammar import *
 from .model import *
 from .operations import *
+"""from .geometry import *
+import grammar
+import model
+import operations"""
 
 __all__ = [
     *geometry.__all__,
