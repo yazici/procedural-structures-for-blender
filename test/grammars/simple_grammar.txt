@@ -1,0 +1,5 @@
+0: plot --> split(splitAgain, blueRule)
+1: splitAgain --> split(blueRule, redRule) : 0.1
+2: splitAgain --> split(splitAgain, redRule) : 0.9
+3: redRule --> colour(red)
+4: blueRule --> colour(blue)
