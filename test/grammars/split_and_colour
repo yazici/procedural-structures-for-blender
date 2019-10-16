@@ -1,0 +1,3 @@
+0: plot --> split(redRule, blueRule)
+3: redRule --> colour(red)
+4: blueRule --> colour(blue)
